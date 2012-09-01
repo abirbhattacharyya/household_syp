@@ -1,0 +1,15 @@
+<% @payment = pdf_letter %>
+
+
+-------------------------------------
+<b>Congrats! You Won</b>
+-------------------------------------
+
+<b>Voucher# <%=@payment.voucher_code %></b>
+
+Your Price: <%= number_to_currency(@payment.price, :precision => 0) %>
+Quantity: <%= number_with_delimiter(@payment.quantity) %>
+Total Price: <%= number_to_currency((@payment.price*@payment.quantity), :precision => 0) %>
+
+<b><%= @payment.offer.product.name %></b>
+<%= @payment.offer.product.description %>

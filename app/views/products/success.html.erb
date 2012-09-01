@@ -1,0 +1,35 @@
+<% profile = @payment.offer.product.user.profile %>
+<h1>Congratulations! You won.</h1>
+
+<div class="capsule2 w550px">
+
+    <div class="cinner">
+        <span class="expires">
+          <%=image_tag((profile.logo_url ? url_for_file_column(profile,"logo_url") : "/images/mylogo.jpg"), :size => "65x53")%>
+        </span>
+        <h3>Voucher# <%=@payment.voucher_code %></h3>
+        <p>
+          Your Price: <%= number_to_currency(@payment.price, :precision => 0) %><br />
+          Quantity: <%= number_with_delimiter(@payment.quantity) %><br />
+          Total Price: <%= number_to_currency((@payment.price*@payment.quantity), :precision => 0) %>
+        </p>
+        <p>
+            <b><%= @payment.offer.product.name %></b><br />
+            <%= @payment.offer.product.description %>
+        </p>
+    </div><!-- .cinner -->
+    <div class="ctl"></div><div class="ctc"></div><div class="ctr"></div>
+    <div class="cml"></div><div class="cmr"></div>
+    <div class="cbl"></div><div class="cbc"></div><div class="cbr"></div>
+</div><!-- .capsule3.terms -->
+
+<%= link_to("Download PDF of voucher", "javascript:void();", :onclick => "window.location.href='#{url_for(:controller => "products", :action => "download_pdf", :id => @payment.id)}'") %>
+<% form_for :payment, :url => payments_path(@payment.id) do |f| %>
+  <p class="ctrl">
+      <%= label_tag(:email, "Your email (Optional: Used to send your voucher)") %>
+      <%= f.text_field :email, :class => "w250px" %>
+  </p>
+  <p class="ctrls">
+      <span class="button-green small-font"><%= f.submit("Email Voucher") %></span>
+  </p>
+<% end %>

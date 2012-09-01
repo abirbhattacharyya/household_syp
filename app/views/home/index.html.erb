@@ -1,0 +1,27 @@
+<h1 class="home">Let's make a deal on household stuff?</h1>
+<% default_biz_user = Profile.first %>
+<div class="intro-steps">
+    <%= link_to(content_tag(:span, 1)+label_tag(:label1, "Check out cool stuff!"), capsule_path(1)) %>
+    <%= link_to(content_tag(:span, 2)+label_tag(:label2, "Your deal, your way!"), capsule_path(2)) %>
+    <%= link_to(content_tag(:span, 3)+label_tag(:label3, "Pay Online or @ The Store!"), capsule_path(3)) %>
+</div><!-- .steps -->
+
+<div class="intro-slides">
+   <% if default_biz_user %>
+    <%if url_for_file_column(default_biz_user,"home_page_image1") %>
+      <%= link_to(image_tag( url_for_file_column(default_biz_user,"home_page_image1"), :size => "300x460"), capsule_path(1)) %>
+    <%end%>
+    <%if url_for_file_column(default_biz_user,"home_page_image2") %>
+      <%= link_to(image_tag( url_for_file_column(default_biz_user,"home_page_image2"), :size => "300x460"), capsule_path(2)) %>
+    <%end%>
+    <%if url_for_file_column(default_biz_user,"home_page_image3") %>
+      <%= link_to(image_tag( url_for_file_column(default_biz_user,"home_page_image3"), :size => "300x460"), capsule_path(3)) %>
+    <%end%>      
+   <%end%>
+    <div class="tl"></div><div class="tr"></div>
+    <div class="bl"></div><div class="br"></div>
+</div><!-- .intro-slides -->
+
+<p class="intro-ctrls">
+    <%= link_to(content_tag(:span, "Let's make a deal!"), say_your_price_path(Product::CATEGORY[:say_your_price]), :class => "button-green") %>
+</p>

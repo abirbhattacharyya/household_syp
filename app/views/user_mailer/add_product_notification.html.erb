@@ -1,0 +1,26 @@
+<h1>Product Details</h1>
+
+<table border = 1 cellpadding =1 cellspacing = 0 width = 90% >
+	<colgroup width = "30%"/>
+	<colgroup width = "70%"/>
+	<tr>
+		<td>Name:</td>
+		<td><%=@product.name%></td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td><%=@product.description%></td>
+	</tr>
+	<tr>
+		<td>Regular Price:</td>
+		<td>$<%=number_with_delimiter(@product.regular_price)%></td>
+	</tr>
+	<tr>
+		<td>Target Price:</td>
+		<td>$<%=number_with_delimiter(@product.target_price)%></td>
+	</tr>
+	<tr>
+		<td>Category:</td>
+		<td><%=Product::CATEGORY.index(@product.category).to_s.titleize%></td>
+	</tr>	
+</table>
